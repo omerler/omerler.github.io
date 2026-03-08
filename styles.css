@@ -799,10 +799,29 @@ body {
   min-height: 96px;
 }
 
-.form-disclaimer {
-  margin: 2px 0 0;
-  font-size: 11px;
-  color: var(--text-soft);
+.form-feedback {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.form-feedback--success {
+  background: rgba(34, 197, 94, 0.12);
+  color: var(--text);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.form-feedback--error {
+  background: rgba(239, 68, 68, 0.08);
+  color: var(--text);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.form-row label .required-dot {
+  font-weight: 500;
+  color: var(--accent);
 }
 
 /* Footer */

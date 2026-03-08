@@ -377,13 +377,15 @@
                 </div>
               </dl>
             </div>
+            <!-- Formspree form ID is safe in a public repo: it’s visible in the page anyway. Restrict by domain in the Formspree dashboard to avoid abuse. -->
             <form
               class="contact-form"
-              action="mailto:contact@lerinman.com"
-              method="post"
-              enctype="text/plain"
+              id="contact-form"
+              action="https://formspree.io/f/xkoqgdyg"
+              method="POST"
             >
               <h3>Share a bit about your needs</h3>
+              <input type="hidden" name="_subject" value="Contact from lerinman.com" />
               <div class="form-row">
                 <label for="name">Name</label>
                 <input
@@ -404,32 +406,40 @@
                 />
               </div>
               <div class="form-row">
-                <label for="email">Work email</label>
+                <label for="email">Work email <span class="required-dot" aria-hidden="true">(required)</span></label>
                 <input
                   id="email"
                   name="email"
                   type="email"
                   autocomplete="email"
                   required
+                  aria-required="true"
                 />
               </div>
               <div class="form-row">
-                <label for="context">What are you working on?</label>
+                <label for="data_and_time">Preferred date & time <span class="required-dot" aria-hidden="true">(required)</span></label>
+                <input
+                  id="data_and_time"
+                  name="data_and_time"
+                  type="datetime-local"
+                  required
+                  aria-required="true"
+                />
+              </div>
+              <div class="form-row">
+                <label for="qurey">What are you working on? <span class="required-dot" aria-hidden="true">(required)</span></label>
                 <textarea
-                  id="context"
-                  name="context"
+                  id="qurey"
+                  name="qurey"
                   rows="4"
                   placeholder="Briefly describe your product, current AI stack (if any), and what you’re hoping to achieve."
                   required
                 ></textarea>
               </div>
-              <button class="btn primary full-width" type="submit">
-                Draft email to Omer
+              <button class="btn primary full-width" type="submit" id="contact-submit-btn">
+                Send message
               </button>
-              <p class="form-disclaimer">
-                This form opens your email client with a pre‑filled message to
-                Omer.
-              </p>
+              <div id="form-feedback" class="form-feedback" role="status" aria-live="polite" hidden></div>
             </form>
           </div>
         </section>

@@ -87,3 +87,54 @@ if (yearEl) {
   yearEl.textContent = new Date().getFullYear().toString();
 }
 
+// Contact form: submit via Formspree (AJAX) and show success/error on the page
+const contactForm = document.getElementById("contact-form");
+const formFeedback = document.getElementById("form-feedback");
+const submitBtn = document.getElementById("contact-submit-btn");
+
+if (contactForm && formFeedback && submitBtn) {
+  contactForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const action = contactForm.getAttribute("action");
+    if (!action || action.includes("YOUR_FORM_ID")) {
+      formFeedback.textContent = "Form is not configured. Please set your Formspree form ID in the form action.";
+      formFeedback.hidden = false;
+      formFeedback.classList.remove("form-feedback--success");
+      formFeedback.classList.add("form-feedback--error");
+      return;
+    }
+
+    submitBtn.disabled = true;
+    formFeedback.hidden = true;
+    formFeedback.classList.remove("form-feedback--success", "form-feedback--error");
+
+    const formData = new FormData(contactForm);
+
+    try {
+      const res = await fetch(action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && !data.error) {
+        formFeedback.textContent = "Thanks — your message was sent. I'll get back to you soon.";
+        formFeedback.classList.add("form-feedback--success");
+        contactForm.reset();
+      } else {
+        formFeedback.textContent = data.error || "Something went wrong. Please try again or email contact@lerinman.com.";
+        formFeedback.classList.add("form-feedback--error");
+      }
+    } catch (_) {
+      formFeedback.textContent = "Network error. Please check your connection or email contact@lerinman.com.";
+      formFeedback.classList.add("form-feedback--error");
+    }
+
+    formFeedback.hidden = false;
+    submitBtn.disabled = false;
+  });
+}
+
