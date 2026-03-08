@@ -109,6 +109,11 @@ if (contactForm && formFeedback && submitBtn) {
     formFeedback.hidden = true;
     formFeedback.classList.remove("form-feedback--success", "form-feedback--error");
 
+    const dataAndTimeEl = document.getElementById("data_and_time");
+    if (dataAndTimeEl) {
+      dataAndTimeEl.value = new Date().toISOString();
+    }
+
     const formData = new FormData(contactForm);
 
     try {
