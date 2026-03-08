@@ -99,9 +99,12 @@ if (contactForm && formFeedback) {
     nextRedirect.value = window.location.origin + (path.endsWith("/") ? path : path + "/") + "#contact?contact=success";
   }
 
-  // On submit: only set date_and_time, then let form do native POST (no preventDefault)
+  // Keep date_and_time set so Formspree validation passes (set now and again on submit)
+  const dateAndTimeEl = document.getElementById("date_and_time");
+  if (dateAndTimeEl) {
+    dateAndTimeEl.value = new Date().toISOString();
+  }
   contactForm.addEventListener("submit", function () {
-    const dateAndTimeEl = document.getElementById("date_and_time");
     if (dateAndTimeEl) {
       dateAndTimeEl.value = new Date().toISOString();
     }
