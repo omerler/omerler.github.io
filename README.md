@@ -1,10 +1,15 @@
-# omerler.github.io
-personal web page
+# Personal site (open source)
 
-## Contact form (Formspree)
+A minimal, responsive single-page site—HTML, CSS, and vanilla JS—hosted on GitHub Pages. Shared so others can fork, adapt, and reuse.
 
-The contact form sends submissions to your inbox via [Formspree](https://formspree.io) (works on GitHub Pages with no backend).
+**Stack:** Static HTML · CSS · JavaScript (no framework) · [Formspree](https://formspree.io) for the contact form (no backend required).
 
-**Is the form ID safe in a public repo?** Yes. The form ID is not a secret—it’s visible to anyone who loads the page (view source or DevTools). Formspree protects you with rate limiting and optional domain allowlisting. In the Formspree dashboard, set **Settings → Accept submissions only from** to your domain (e.g. `lerinman.com`) so only your site can submit.
+---
 
-To use a different form: create one at [formspree.io](https://formspree.io), copy the form ID from the form URL, and update the form `action` in `index.html`.
+### Contact form
+
+Submissions go to your inbox via Formspree. Replace `YOUR_FORM_ID` in the form `action` in `index.html` with your [Formspree](https://formspree.io) form ID. Restrict submissions by domain in the Formspree dashboard (Settings → Accept submissions only from) to avoid abuse.
+
+---
+
+Fork and adapt freely.
