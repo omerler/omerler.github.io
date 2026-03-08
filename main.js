@@ -99,11 +99,11 @@ if (contactForm && formFeedback) {
     nextRedirect.value = window.location.origin + (path.endsWith("/") ? path : path + "/") + "#contact?contact=success";
   }
 
-  // On submit: only set data_and_time, then let form do native POST (no preventDefault)
+  // On submit: only set date_and_time, then let form do native POST (no preventDefault)
   contactForm.addEventListener("submit", function () {
-    const dataAndTimeEl = document.getElementById("data_and_time");
-    if (dataAndTimeEl) {
-      dataAndTimeEl.value = new Date().toISOString();
+    const dateAndTimeEl = document.getElementById("date_and_time");
+    if (dateAndTimeEl) {
+      dateAndTimeEl.value = new Date().toISOString();
     }
   });
 
