@@ -72,11 +72,17 @@ if ("IntersectionObserver" in window) {
       });
     },
     {
-      threshold: 0.2,
+      threshold: 0.1,
+      rootMargin: "0px 0px 60px 0px",
     }
   );
 
   revealSections.forEach((section) => observer.observe(section));
+
+  // Fallback: reveal any sections still hidden after 1.5s (e.g. short pages, print, screenshots)
+  setTimeout(() => {
+    revealSections.forEach((section) => section.classList.add("is-visible"));
+  }, 1500);
 } else {
   revealSections.forEach((section) => section.classList.add("is-visible"));
 }
